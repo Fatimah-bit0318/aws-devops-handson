@@ -50,6 +50,7 @@ resource "aws_instance" "crecita_ec2" {
   ami           = "ami-0b245cc5f82576748"
   instance_type = "t3.micro"
 
+  key_name  = "crecita-devops-key2"
   subnet_id = "subnet-0883c71f291e646bc"
 
   vpc_security_group_ids = [
