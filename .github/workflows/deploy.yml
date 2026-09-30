@@ -21,7 +21,7 @@ jobs:
       - name: Configure SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/crecita-devops-key2.pem
+          echo "${{ secrets.EC2_SSH_KEY_B64 }}" | base64 -d > ~/.ssh/crecita-devops-key2.pem
           chmod 600 ~/.ssh/crecita-devops-key2.pem
 
       - name: Add EC2 to known hosts
