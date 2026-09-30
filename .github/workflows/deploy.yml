@@ -35,14 +35,19 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          ssh -vvv \
-            -o StrictHostKeyChecking=yes \
+          ssh -o StrictHostKeyChecking=yes \
             -i ~/.ssh/crecita-devops-key2.pem \
             ec2-user@3.223.140.174 \
             "echo SSH_CONNECTION_SUCCESS"
+
+      - name: Check Ansible connection settings
+        run: |
+          ansible-inventory -i ansible/inventory.ini --host ec2
 
       - name: Run Ansible deployment
         run: |
           ansible-playbook \
             -i ansible/inventory.ini \
+            --private-key ~/.ssh/crecita-devops-key2.pem \
+            -u ec2-user \
             ansible/deploy.yml
