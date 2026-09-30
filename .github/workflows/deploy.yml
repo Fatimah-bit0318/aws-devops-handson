@@ -24,6 +24,10 @@ jobs:
           echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/crecita-devops-key2.pem
           chmod 600 ~/.ssh/crecita-devops-key2.pem
 
+      - name: Add EC2 to known hosts
+        run: |
+          ssh-keyscan -H 3.223.140.174 >> ~/.ssh/known_hosts
+
       - name: Run Ansible deployment
         run: |
           ansible-playbook \
