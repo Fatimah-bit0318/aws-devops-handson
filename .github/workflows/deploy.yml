@@ -24,9 +24,22 @@ jobs:
           echo "${{ secrets.EC2_SSH_KEY_B64 }}" | base64 -d > ~/.ssh/crecita-devops-key2.pem
           chmod 600 ~/.ssh/crecita-devops-key2.pem
 
+      - name: Verify SSH key
+        run: |
+          ssh-keygen -y -f ~/.ssh/crecita-devops-key2.pem > /tmp/public_key
+          echo "SSH key is valid"
+
       - name: Add EC2 to known hosts
         run: |
           ssh-keyscan -H 3.223.140.174 >> ~/.ssh/known_hosts
+
+      - name: Test SSH connection
+        run: |
+          ssh -vvv \
+            -o StrictHostKeyChecking=yes \
+            -i ~/.ssh/crecita-devops-key2.pem \
+            ec2-user@3.223.140.174 \
+            "echo SSH_CONNECTION_SUCCESS"
 
       - name: Run Ansible deployment
         run: |
