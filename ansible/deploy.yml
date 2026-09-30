@@ -1,0 +1,32 @@
+---
+- name: Deploy Crecita React App
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Install Node.js and Git
+      dnf:
+        name:
+          - nodejs
+          - git
+        state: present
+
+    - name: Clone application repository
+      become_user: ec2-user
+      git:
+        repo: "https://github.com/Fatimah-bit0318/aws-devops-handson.git"
+        dest: /home/ec2-user/aws-devops-handson
+        version: main
+        force: yes
+
+    - name: Install npm dependencies
+      become_user: ec2-user
+      command: npm install
+      args:
+        chdir: /home/ec2-user/aws-devops-handson
+
+    - name: Build React application
+      become_user: ec2-user
+      command: npm run build
+      args:
+        chdir: /home/ec2-user/aws-devops-handson
