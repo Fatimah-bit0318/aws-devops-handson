@@ -1,4 +1,3 @@
-```markdown
 ---
 
 # Crecita React Frontend — DevOps + Cloud Practice Project 🚀
@@ -122,13 +121,17 @@ npm start
 
 ---
 
-### ✅ Task 5: Docker + ECR + ECS Deployment
-- Create a `Dockerfile` to containerize the React app.
-- Build and push the Docker image to AWS ECR.
-- Use Terraform to:
-    - Create an ECS Cluster and Service
-    - Deploy the Docker container on ECS
-- Automate everything via GitHub Actions.
+### ✅ Task 5: Docker + Amazon ECR
+
+**Completed:**
+- Created a `Dockerfile` for the React application using Node.js.
+- Built the Docker image `crecita-react-app:latest`.
+- Ran the container locally on port `3000` and verified the application using Docker logs.
+- Tagged the image and pushed it successfully to Amazon ECR.
+- ECR image: `834176180969.dkr.ecr.us-east-1.amazonaws.com/crecita-react:latest`
+
+**Not completed:**
+- ECS cluster and service deployment (skipped to avoid additional AWS costs).
 
 ---
 
@@ -203,4 +206,3 @@ For each task:
 
 # 🚀 Happy Learning and Building! 💻🔥
 ---
-```
