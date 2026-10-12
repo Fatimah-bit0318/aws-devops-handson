@@ -1,4 +1,3 @@
----
 
 # Crecita React Frontend — DevOps + Cloud Practice Project 🚀
 
